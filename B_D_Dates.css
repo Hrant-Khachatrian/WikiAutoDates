@@ -1,0 +1,60 @@
+body {
+    background-color: #b7d1c4;
+}
+#display1 h1{
+    text-align: center;
+    font-family: Garamond, serif;
+    font-size: 38px;
+    color: #C6E2FF;
+}
+div {
+    border: #3c4543 10px solid;
+    background-color: #acd1b2;
+    margin-right: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+table{
+    margin-left: auto;
+    margin-right: auto
+}
+td  {
+    height: 115px;
+    width: 115px;
+}
+
+#display1{
+    clear: both;
+    position: relative;
+    bottom: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 75px;
+    background-color: #3c4543;
+
+}
+#veryFirstAccButId{
+
+    width:124px;
+    height:34px;
+
+}
+#button{
+    margin-left: auto;
+    margin-right: auto;
+    width:124px;
+    height:34px;
+}
+#display2 h1{
+    text-align: center;
+    font-family: Garamond, serif;
+    font-size: 38px;
+    color: #3c4543;
+}
+#butt2{
+    margin-top: 10px;
+    margin-left: 1100px;
+    width:124px;
+    height:34px;
+}
+
