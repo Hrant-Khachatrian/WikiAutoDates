@@ -1,7 +1,7 @@
 
 
 var getArticleText = function (title, onComplete) {
-	var page = new Morebits.wiki.page('Փետրվար_18');
+	var page = new Morebits.wiki.page('Փետրվար_19');
 
 	page.load(function () {
 		var text = page.getPageText();
