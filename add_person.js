@@ -50,12 +50,7 @@ var IY1=false;
 //////////////////////////////////////////////////////////////////////////////////////////
 function insert_in(before_add,after_add,text,i,add)
 {
-    var result=text.substr(0,i);
-    result+=before_add;
-    result+=add;
-    result+=after_add;
-    result+=text.substr(i);
-    return result;
+    return text.substr(0,i)+before_add+add+after_add+text.substr(i);
 }
 var M_names=['Հունվար','Փետրվար','Մարտ','Ապրիլ','Մայիս','Հունիս','Հուլիս','Օգոստոս','Սեպտեմբեր','Հոկտեմբեր','Նոյեմբեր','Դեկտեմբեր'];
 function month2number(m)
