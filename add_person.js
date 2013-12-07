@@ -48,12 +48,12 @@ var DO1= {
 };
 var IY1=false;
 //////////////////////////////////////////////////////////////////////////////////////////
-function insert_in(t1,t2,text,i,add)
+function insert_in(before_add,after_add,text,i,add)
 {
     var result=text.substr(0,i);
-    result+=t1;
+    result+=before_add;
     result+=add;
-    result+=t2;
+    result+=after_add;
     result+=text.substr(i);
     return result;
 }
