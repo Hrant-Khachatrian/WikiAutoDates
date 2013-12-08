@@ -91,7 +91,10 @@ function addPerson(text, section, NameObject, DayObject, isYear)
                 for(j=i+4;text[j]!=']';) j++;
                 var y1=parseInt(text.substring(i+4,j));
                 if(y1>DayObject.year)
+                {
+                    while(text[i-1]==' ' || text[i-1]=='    ') i--;
                     return insert_in('','',text,i,add);
+                }
             }
             else
             {
@@ -101,7 +104,10 @@ function addPerson(text, section, NameObject, DayObject, isYear)
                 d=parseInt(d);
                 m=month2number(m);
                 if(m==-1 || m>DayObject.month || m==DayObject.month && d> DayObject.day)
+                {
+                    while(text[i-1]==' ' || text[i-1]=='    ') i--;
                     return insert_in('','',text,i,add);
+                }
             }
         }
     }
