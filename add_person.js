@@ -36,14 +36,14 @@ var t1="{{20-րդ դար}}_{{Տարին այլ օրացույցներով|{{PAGE
     [[Կատեգորիա:1956]]\n\
 \n\
 ";
-var s1="Մահեր";
+var s1="Ծնունդներ";
 var NO1= {
     name: "Տիգրան Մամիկոնյան",
     description: "ttt"
 };
 var DO1= {
     day: 21,
-    month: 12,
+    month: 1,
     year: 1905
 };
 var IY1=false;
