@@ -43,7 +43,7 @@ var NO1= {
 };
 var DO1= {
     day: 21,
-    month: 1,
+    month: 12,
     year: 1905
 };
 var IY1=false;
@@ -81,9 +81,10 @@ function addPerson(text, section, NameObject, DayObject, isYear)
     }
     if(!section_exists) return insert_in("== "+section+" ==\n",'\n',text,t,add);
     var j,section_end;
-    for(j=i;j<text.length;j++) if(text.substr(j,2)=='==' || text.substr(i,11)=='[[Կատեգորիա')
-    {section_end=j; break;}
-
+    for(j=i;j<text.length;j++)
+        if(text.substr(j,2)=='==' || text.substr(j,11)=='[[Կատեգորիա' || text.substr(j,4)=='<!--')
+            break;
+    section_end=j;
     for(;i< section_end;i++)    {
         if(text.substr(i,4)=='* [[')
         {
