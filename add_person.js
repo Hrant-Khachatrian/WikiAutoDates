@@ -36,7 +36,7 @@ var t1="{{20-րդ դար}}_{{Տարին այլ օրացույցներով|{{PAGE
     [[Կատեգորիա:1956]]\n\
 \n\
 ";
-var s1="Ծնունդներ";
+var s1="Մահեր";
 var NO1= {
     name: "Տիգրան Մամիկոնյան",
     description: "ttt"
@@ -60,10 +60,11 @@ function month2number(m)
 }
 function addPerson(text, section, NameObject, DayObject, isYear)
 {
-    var add='    ';
+    var add;
     if(isYear) add+="* [[" + DayObject.year + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
     else add+="* [[" + M_names[DayObject.month-1] + 'ի ' + DayObject.day + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
     /// + 'ի ' +   ||   + ' ' +
+    add+='    ';
     var t,sect_name="",section_exists=false;
     for(var i=0;i<text.length-2;i++)
     {
@@ -91,10 +92,7 @@ function addPerson(text, section, NameObject, DayObject, isYear)
                 for(j=i+4;text[j]!=']';) j++;
                 var y1=parseInt(text.substring(i+4,j));
                 if(y1>DayObject.year)
-                {
-                    while(text[i-1]==' ' || text[i-1]=='    ') i--;
                     return insert_in('','',text,i,add);
-                }
             }
             else
             {
@@ -104,10 +102,7 @@ function addPerson(text, section, NameObject, DayObject, isYear)
                 d=parseInt(d);
                 m=month2number(m);
                 if(m==-1 || m>DayObject.month || m==DayObject.month && d> DayObject.day)
-                {
-                    while(text[i-1]==' ' || text[i-1]=='    ') i--;
                     return insert_in('','',text,i,add);
-                }
             }
         }
     }
