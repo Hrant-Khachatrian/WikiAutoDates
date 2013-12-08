@@ -60,9 +60,9 @@ function month2number(m)
 }
 function addPerson(text, section, NameObject, DayObject, isYear)
 {
-    var add;
-    if(isYear) add="* [[" + DayObject.year + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
-    else add="* [[" + M_names[DayObject.month-1] + 'ի ' + DayObject.day + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
+    var add='   ';
+    if(isYear) add+="* [[" + DayObject.year + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
+    else add+="* [[" + M_names[DayObject.month-1] + 'ի ' + DayObject.day + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
     /// + 'ի ' +   ||   + ' ' +
     var t,sect_name="",section_exists=false;
     for(var i=0;i<text.length-2;i++)
