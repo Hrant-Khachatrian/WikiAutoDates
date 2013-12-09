@@ -86,6 +86,7 @@ function addPerson(text, section, NameObject, DayObject, isYear)
             break;
     while(text[j-1]==' ' ||text[j-1]=='\n') j--;
     section_end=j+1;
+    if(section_end>text.length) section_end=text.length;
     for(;i< section_end;i++)    {
         if(text.substr(i,4)=='* [[')
         {
