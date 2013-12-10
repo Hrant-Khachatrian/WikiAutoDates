@@ -111,5 +111,5 @@ function addPerson(text, section, NameObject, DayObject, isYear)
     }
     return insert_in('','',text,i,add);
 }
-result=addPerson(t1,s1,NO1,DO1,IY1);
+var result=addPerson(t1,s1,NO1,DO1,IY1);
 console.log(result);
