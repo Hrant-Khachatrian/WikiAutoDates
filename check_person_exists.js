@@ -19,7 +19,9 @@ var t1="{{20-րդ դար}}_{{Տարին այլ օրացույցներով|{{PAGE
     * [[Հունվար 3]] - [[Մել Գիբսոն]], ամերիկացի դերասան, ռեժիսոր\n\
     * [[Ապրիլի 14]] - [[Տիգրան Թորոսյան]], հայ քաղաքական գործիչ\n\
     * [[Օգոստոսի 1]] - [[Անուշավան Դանիելյան ]], Լեռնային Ղարաբաղի Հանրապետության վարչապետ\n\
+    * [[Ապրիլի 14]] - [[  T3 ]], հայ քաղաքական գործիչ\n\
     * [[Օգոստոսի 16]] - [[Վահան Հովհաննիսյան]], հայ [[քաղաքական գործիչ]], նախկին [[Ազգային Ժողով]]ի նախագահի տեղակալ և [[Հայ Հեղափոխական Դաշնակցություն|Հայ Հեղափոխական Դաշնակցության]] անդամ\n\
+    * [[Ապրիլի 14]] - [[ահան Հովհաննիսյան]], հայ քաղաքական գործիչ\n\
     * [[Հոկտեմբերի 28]] - [[Մահմուդ Ահմադինեջադ]], [[Իրան]]ի [[Իրանի Նախագահ|նախագահ]]\n\
 \n\
     == Մահեր ==\n\
@@ -38,78 +40,69 @@ var t1="{{20-րդ դար}}_{{Տարին այլ օրացույցներով|{{PAGE
 ";
 var s1="Ծնունդներ";
 var NO1= {
-    name: "Տիգրան Մամիկոնյան",
+    name: "Վահան Հովհաննիսյան",
     description: "ttt"
 };
 var DO1= {
-    day: 21,
-    month: 12,
+    day: 14,
+    month: 4,
     year: 1905
 };
 var IY1=false;
 //////////////////////////////////////////////////////////////////////////////////////////
-function insert_in(before_add,after_add,text,i,add)
-{
-    return text.substr(0,i)+before_add+add+after_add+text.substr(i);
-}
 var M_names=['Հունվար','Փետրվար','Մարտ','Ապրիլ','Մայիս','Հունիս','Հուլիս','Օգոստոս','Սեպտեմբեր','Հոկտեմբեր','Նոյեմբեր','Դեկտեմբեր'];
-function month2number(m)
+function min_positive(a,b,c,d)
 {
-    for(var i=0;i<12;i++) if(m==M_names[i] || m==M_names[i]+'ի') return i+1;
-    return -1;
+    var ret=-10;
+    if(a>0 && (a<ret || ret==-10) ) ret=a;
+    if(b>0 && (b<ret || ret==-10) ) ret=b;
+    if(c>0 && (c<ret || ret==-10) ) ret=c;
+    if(d>0 && (d<ret || ret==-10) ) ret=d;
+    return ret;
 }
-function addPerson(text, section, NameObject, DayObject, isYear)
+function stug(S1,S2)
 {
-    var add;
-    if(isYear) add="* [[" + DayObject.year + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
-    else add="* [[" + M_names[DayObject.month-1] + 'ի ' + DayObject.day + "]] - [[" + NameObject.name + "]]," + NameObject.description+'\n';
-    /// + 'ի ' +   ||   + ' ' +
-    add+='    ';
-    var t,sect_name="",section_exists=false;
-    for(var i=0;i<text.length-2;i++)
+    var percent=80; /// min percent of LCA required to consider the names as the same
+    var arr1=[],arr2=[],i;
+    for(i=0;i<=S2.length;i++) arr2.push(0);
+    for(i=1;i<=S1.length;i++)
     {
-        t=i;
-        if(text.substr(i,11)=='[[Կատեգորիա') break;
-        if(text.substr(i,2)=='==')
+        arr1=arr2;
+        arr2[0]=0;
+        for(var j=1;j<=S2.length;j++)
         {
-            sect_name="";
-            for(i+=2;i<text.length && text[i]!='=';i++) if(text[i]!=' ') sect_name+=text[i];
-            i+=2;
-            if(sect_name==section) {section_exists=true; break;}
-            if(sect_name>section) break;
+            if(S2[j-1]==S1[i-1]) arr2[j]=arr1[j-1]+1;
+            else arr2[j]=Math.max(arr2[j-1],arr1[j]);
         }
     }
-    if(!section_exists) return insert_in("== "+section+" ==\n",'\n',text,t,add);
-    var j,section_end;
-    for(j=i;j<text.length;j++)
-        if(text.substr(j,2)=='==' || text.substr(j,11)=='[[Կատեգորիա' || text.substr(j,4)=='<!--')
-            break;
-    while(text[j-1]==' ' ||text[j-1]=='\n') j--;
-    section_end=j+1;
-    if(section_end>text.length) section_end=text.length;
-    for(;i< section_end-4;i++)    {
-        if(text.substr(i,4)=='* [[')
-        {
-            if(isYear)
-            {
-                for(j=i+4;text[j]!=']';) j++;
-                var y1=parseInt(text.substring(i+4,j));
-                if(y1>DayObject.year)
-                    return insert_in('','',text,i,add);
-            }
-            else
-            {
-                var m="",d="";
-                for(j=i+4;text[j]!=' ';j++) m+=text[j];
-                for(j++;text[j]!=']';j++) d+=text[j];
-                d=parseInt(d);
-                m=month2number(m);
-                if(m==-1 || m>DayObject.month || m==DayObject.month && d> DayObject.day)
-                    return insert_in('','',text,i,add);
-            }
-        }
-    }
-    return insert_in('','',text,i,add);
+    var p=arr2[S2.length];
+    var mi=Math.min(S1.length,S2.length),ma=Math.max(S1.length,S2.length);
+    var percentt=100.0*p/ma;
+    return percentt>=percent;
 }
-var result=addPerson(t1,s1,NO1,DO1,IY1);
+function checkPersonExists(text, section, NameObject, DayObject, isYear)
+{
+    var i1=text.search(RegExp("==\\s*"+section+"\\s*=="));
+    if(i1==-1) return false;
+    var section_start,t=0;
+    for(section_start=i1;t<4;section_start++)
+        if(text[section_start]=='=')
+            t++;
+    var section_end=min_positive( text.length, text.indexOf("==",section_start) ,
+        text.indexOf("[[Կատեգորիա",section_start) , text.indexOf("<!--",section_start));
+    var section_text=text.substring(section_start,section_end);
+    var date;
+    if(isYear) var date=DayObject.year.toString();
+    else var date=M_names[DayObject.month-1]+"\.\\s*"+DayObject.day.toString();
+    var ankap="\\*\\s*\\[\\[\\s*" + date + "\\s*\\]\\]\\s*-\\s*\\[\\[\\s*(.*)\\s*\\]\\]";
+    var re=RegExp(ankap,'g');
+    while(1)
+    {
+        r1=re.exec(section_text);
+        if(r1==null) break;
+        if(stug(NameObject.name,r1[1])) return true;
+    }
+    return false;
+}
+var result=checkPersonExists(t1,s1,NO1,DO1,IY1);
 console.log(result);
