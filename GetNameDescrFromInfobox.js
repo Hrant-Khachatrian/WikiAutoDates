@@ -32,12 +32,11 @@ function GetNameDescription(name, descr) {
     description = description.replace("]]", "");
     description = description.trim();
     var NameObject = { name: n, description: description };
-
     return NameObject.name+NameObject.description;
 
 }
 
-function Click() {
+function Click(text) {
     ////////////////Նախ պարզենք  Տեղեկաքարտի տեսակը.////////////////
 
     var start = text.indexOf("Տեղեկաքարտ") + "Տեղեկաքարտ".length;
@@ -48,20 +47,60 @@ function Click() {
 
     ///////////////Անուհետև աշխատեցնենք GetNameDescription ֆունկցիան ըստ տեղեկաքարտի տեսակի//////////
 
-    switch (description) {
-        case "Կաթողիկոս":info=GetNameDescription("հայերեն անուն","տիտղոս");break;
-        case "Անձ": info = GetNameDescription("ԱԱՀ", "նկարագրում");break;
-        case "Գրող": info = GetNameDescription("name", "occupation");break;
-        case "երաժիշտ": info = GetNameDescription("Name", "Occupation");break;
-        case "Դերասան": info = GetNameDescription("Բնագիր անուն", "Մասնագիտություն");break;
-        case "Պաշտոնատար": info = GetNameDescription("ԱԱՀ", "պաշտոն");break;
-        case "Ռազմական գործիչ": info = GetNameDescription("ամբողջական անուն", "պաշտոն");break;
-        case "Ըմբշամարտիկ": info = GetNameDescription(" անուն", "նկարագրում");break;
-        case "Շախմատիստ": info = GetNameDescription(" անուն", "նկարագրում");break;
-        case "Նկարիչ":info=GetNameDescription("Ի ծնե տրված անունը","Ոճ(եր)ը");break;
-        case "Գիտնական":info=GetNameDescription("անուն","գա");break;
-
+    var fieldsName={
+        "գրող":{
+            name1:"name",
+            profession:"occupation"
+        },
+        "Անձ":{
+            name1:"հայերեն անուն",
+            profession:"տիտղոս"
+        },
+        "Կաթողիկոս":{
+            name1:"հայերեն անուն",
+            profession:"տիտղոս"
+        },
+        "երաժիշտ":{
+            name1:"Name",
+            profession:"Occupation"
+        },
+        "Դերասան":{
+            name1:"Բնագիր անուն",
+            profession:"Մասնագիտություն"
+        },
+        "Պաշտոնատար":{
+            name1:"ԱԱՀ",
+            profession:"պաշտոն"
+        },
+        "Ռազմական գործիչ":{
+            name1:"ամբողջական անուն",
+            profession:"պաշտոն"
+        },
+        "Ըմբշամարտիկ":{
+            name1:"անուն",
+            profession:"նկարագրում"
+        },
+        "Շախմատիստ": {
+            name1:"անուն",
+            profession:"նկարագրում"
+        },
+        "Նկարիչ":{
+            name1:"Ի ծնե տրված անունը",
+            profession:"Ոճ(եր)ը"
+        },
+        "Գիտնական":{
+            name1:"անուն",
+            profession:"գա"
+        }
     }
+    /////տեղեկաքարտերը շատ են․․․/////
 
-    document.getElementById("demo").innerHTML = info;
+
+
+    info=GetNameDescription(fieldsName[description].name1,fieldsName[description].profession);
+    return info;
+
+    //document.getElementById("demo").innerHTML = info;
 }
+var result=Click(text);
+console.log(result);
